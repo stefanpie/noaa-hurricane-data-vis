@@ -1,5 +1,5 @@
 var CACHE_NAME = 'hurricanes-cache';
-var urlsToCache = ['/', '/stylesheet.css', '/app.js', '/hurdat2_1950.json'];
+var urlsToCache = ['', 'stylesheet.css', 'app.js', 'hurdat2_1950.json'];
 
 self.addEventListener('install', function (event) {
 	// Perform install steps
