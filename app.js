@@ -177,6 +177,7 @@ var app = new Vue({
 				hurricaneLayer.addTo(vm.filteredHurricanesMapLayer);
 				
 				var hurricaneMapReferences = {
+					hurricane: h,
 					hurricaneLayer: hurricaneLayer,
 					markerLayer: hurricaneLayerMarkers,
 					trackLayer: polyline
@@ -184,6 +185,26 @@ var app = new Vue({
 				vm.filteredHurricanesLayers.push(hurricaneMapReferences);
 				
 			});
+		},
+
+		resultClicked: function (event, data) {
+			this.optionChanged();
+			this.selectedHurricane = data;
+			this.filteredHurricanesLayers.forEach(function(h){
+				if (h.hurricane.ATCF_code === data.ATCF_code){
+					h.markerLayer.addTo(h.hurricaneLayer);
+					h.markerLayer.enabled = true;
+				}
+			});
+		},
+
+
+		clearAll: function (event) {
+			event.preventDefault();
+			this.optionChanged();
+			this.selectedHurricane = null;
 		}
+
+
 	}
 });
